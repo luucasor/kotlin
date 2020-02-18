@@ -19,26 +19,6 @@ fun main() {
     }
   )
 
-  val file = File("00776574000903_3_1734769.xml")
-  val fileIS = FileInputStream(file)
-  val builderFactory = DocumentBuilderFactory.newInstance()
-  val builder = builderFactory.newDocumentBuilder()
-
-  val xmlDocument: Document = builder.parse(fileIS)
-  val xPath = XPathFactory.newInstance().newXPath()
-  val expression = "//nfeProc/NFe/infNFe/emit"
-  val nodeList = xPath.compile(expression).evaluate(
-    xmlDocument, XPathConstants.NODESET
-  ) as NodeList
-
-  for (i in 0 until nodeList.length) {
-    val nNode: Node = nodeList.item(i)
-    System.out.println("\nCurrent Element Name:" + nNode.getNodeName())
-
-    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-      val eElement: Element = nNode as Element
-      var value = eElement.getElementsByTagName("CNPJ").item(0).getTextContent()
-      System.out.println("\nCurrent Element Value:" + value)
-    }
-  }
+  val xmlReader = XMLReader("00776574000903_3_1734769.xml")
+  println("Primeiro elemento: "+xmlReader.getRootElement().nodeName)
 }
