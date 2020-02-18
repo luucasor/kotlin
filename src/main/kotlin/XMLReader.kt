@@ -20,7 +20,7 @@ class XMLReader (pathName: String){
   val nodeList = xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET) as NodeList
 
   fun getRootElement(): Node {
-    return nodeList.item(0)
+    return xmlDocument.documentElement
   }
 
   //  for (i in 0 until nodeList.length) {
